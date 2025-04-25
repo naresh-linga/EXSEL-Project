@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Water Pressure Management Dashboard</title>
+  <style>
+    :root {
+      --primary: #0066ff;
+      --secondary: #f4f7fa;
+      --dark: #1a1a1a;
+      --light: #ffffff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--secondary);
+      color: var(--dark);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background: var(--primary);
+      color: white;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 25px;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #d4e5ff;
+    }
+
+    main {
+      flex-grow: 1;
+      padding: 40px 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    section {
+      margin-bottom: 60px;
+    }
+
+    section h2 {
+      margin-bottom: 15px;
+      color: var(--primary);
+      font-size: 1.5rem;
+    }
+
+    footer {
+      background: var(--dark);
+      color: var(--light);
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav {
+        margin-top: 10px;
+      }
+
+      nav a {
+        margin-left: 0;
+        margin-right: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Water Pressure Management</h1>
+    <nav>
+      <a href="#dashboard">Dashboard</a>
+      <a href="#about">About Us</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="dashboard">
+        <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pressure Sensor Simulation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .sensor-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .sensor {
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 5px;
+            width: 200px;
+            text-align: center;
+            background-color: #fff;
+        }
+        .gauge {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .gauge-background {
+            width: 100%;
+            height: 75px;
+            background-color: #eee;
+            border-top-left-radius: 150px;
+            border-top-right-radius: 150px;
+            position: relative;
+            overflow: hidden;
+        }
+        .gauge-fill {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(to top, #4CAF50, #8BC34A);
+            transition: height 0.5s ease-out;
+        }
+        .gauge-center {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background-color: #555;
+            border-radius: 50%;
+        }
+        .gauge-needle {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform-origin: bottom center;
+            width: 4px;
+            height: 65px;
+            background-color: #d32f2f;
+            transition: transform 0.5s ease-out;
+        }
+        .value {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 15px 0 5px;
+        }
+        .unit {
+            color: #666;
+            font-size: 14px;
+        }
+        .history-container {
+            margin-top: 30px;
+        }
+        #chart {
+            width: 100%;
+            height: 300px;
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .log {
+            margin-top: 20px;
+            max-height: 200px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #fafafa;
+        }
+        .log-entry {
+            margin-bottom: 5px;
+            font-family: monospace;
+        }
+        .alert {
+            background-color: #ffebee;
+            color: #c62828;
+            padding: 5px;
+            border-radius: 3px;
+        }
+        .config-section {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            border: 1px solid #e0e0e0;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="email"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .download-btn {
+            background-color: #2196F3;
+            margin-top: 10px;
+        }
+        .download-btn:hover {
+            background-color: #0b7dda;
+        }
+        .status-message {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 4px;
+            display: none;
+        }
+        .success {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            border: 1px solid #a5d6a7;
+        }
+        .error {
+            background-color: #ffebee;
+            color: #c62828;
+            border: 1px solid #ef9a9a;
+        }
+
+        .toast {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: #323232;
+  color: white;
+  padding: 15px 25px;
+  border-radius: 8px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+  font-weight: bold;
+  font-size: 1rem;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.4s ease;
+  z-index: 1000;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.toast.success {
+  background: #2ecc71;
+}
+
+.toast.error {
+  background: #e74c3c;
+}
+
+.toast.hidden {
+  display: none;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Pressure Sensor Simulation</h1>
+        
+        <div class="sensor-container">
+            <div class="sensor">
+                <h3>Sensor 1</h3>
+                <div class="gauge">
+                    <div class="gauge-background">
+                        <div id="gauge-fill-1" class="gauge-fill" style="height: 0%"></div>
+                    </div>
+                    <div class="gauge-center"></div>
+                    <div id="gauge-needle-1" class="gauge-needle" style="transform: rotate(0deg)"></div>
+                </div>
+                <div id="value-1" class="value">0.0</div>
+                <div class="unit">kPa</div>
+            </div>
+            
+            <div class="sensor">
+                <h3>Sensor 2</h3>
+                <div class="gauge">
+                    <div class="gauge-background">
+                        <div id="gauge-fill-2" class="gauge-fill" style="height: 0%"></div>
+                    </div>
+                    <div class="gauge-center"></div>
+                    <div id="gauge-needle-2" class="gauge-needle" style="transform: rotate(0deg)"></div>
+                </div>
+                <div id="value-2" class="value">0.0</div>
+                <div class="unit">kPa</div>
+            </div>
+            
+            <div class="sensor">
+                <h3>Sensor 3</h3>
+                <div class="gauge">
+                    <div class="gauge-background">
+                        <div id="gauge-fill-3" class="gauge-fill" style="height: 0%"></div>
+                    </div>
+                    <div class="gauge-center"></div>
+                    <div id="gauge-needle-3" class="gauge-needle" style="transform: rotate(0deg)"></div>
+                </div>
+                <div id="value-3" class="value">0.0</div>
+                <div class="unit">kPa</div>
+            </div>
+        </div>
+        
+        <div class="config-section">
+            <h2>Email Alert Configuration</h2>
+            <div class="form-group">
+                <label for="email-to">Your Email Address (to receive alerts):</label>
+                <input type="email" id="email-to" placeholder="Enter your email address">
+            </div>
+            <div class="form-group">
+                <label for="pressure-threshold">Alert Threshold (kPa):</label>
+                <input type="text" id="pressure-threshold" value="80" placeholder="Enter pressure threshold">
+            </div>
+            <button id="save-config">Save Configuration</button>
+            <div id="config-status" class="status-message"></div>
+        </div>
+        
+        <div class="history-container">
+            <h2>Pressure History</h2>
+            <div id="chart"></div>
+        </div>
+        
+        <div class="log-container">
+            <h2>Data Log</h2>
+            <div id="data-log" class="log"></div>
+            <button id="download-log" class="download-btn">Download Log as CSV</button>
+        </div>
+
+        <!-- Toast Notification -->
+<div id="toast" class="toast hidden"></div>
+
+    </div>
+
+    <!-- Load required libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    
+    <script>
+        // Configuration
+        const MAX_PRESSURE = 100; // kPa
+        const UPDATE_INTERVAL = 5000; // 5 seconds
+        const HISTORY_POINTS = 20;
+        
+        // HARDCODED EmailJS credentials - replace with your actual credentials
+        const EMAILJS_USER_ID = "YsaeECvZ6vfh5Q920"; // Replace with your actual User ID
+        const EMAILJS_SERVICE_ID = "service_ux5yues"; // Replace with your actual Service ID
+        const EMAILJS_TEMPLATE_ID = "template_w295osi"; // Replace with your actual Template ID
+        
+        // Initialize EmailJS with hardcoded credentials
+        emailjs.init(EMAILJS_USER_ID);
+        
+        // Alert configuration
+        let alertConfig = {
+            recipient: '',
+            threshold: 80,
+            lastAlertTime: 0,
+            cooldownPeriod: 60000 // Cooldown of 1 minute between alerts
+        };
+        
+        // Store all log entries for download
+        let allLogEntries = [];
+        
+        // Initialize data arrays
+        let timestamps = [];
+        let sensor1Data = [];
+        let sensor2Data = [];
+        let sensor3Data = [];
+        
+        // Load saved configuration
+        function loadConfig() {
+            const savedConfig = localStorage.getItem('pressureSensorConfig');
+            if (savedConfig) {
+                try {
+                    const config = JSON.parse(savedConfig);
+                    alertConfig = { ...alertConfig, ...config };
+                    
+                    // Update form fields
+                    document.getElementById('email-to').value = alertConfig.recipient || '';
+                    document.getElementById('pressure-threshold').value = alertConfig.threshold || 80;
+                } catch (e) {
+                    console.error('Failed to load configuration:', e);
+                }
+            }
+        }
+        
+        // Save configuration
+        document.getElementById('save-config').addEventListener('click', function() {
+            const recipient = document.getElementById('email-to').value.trim();
+            const threshold = parseFloat(document.getElementById('pressure-threshold').value);
+            
+            // Validate
+            if (isNaN(threshold) || threshold <= 0 || threshold > MAX_PRESSURE) {
+                showStatus('config-status', 'Please enter a valid pressure threshold between 0 and ' + MAX_PRESSURE, false);
+                return;
+            }
+            
+            if (!recipient) {
+                showStatus('config-status', 'Please enter a valid email address', false);
+                return;
+            }
+            
+            alertConfig = {
+                ...alertConfig,
+                recipient,
+                threshold
+            };
+            
+            // Save to localStorage
+            localStorage.setItem('pressureSensorConfig', JSON.stringify(alertConfig));
+            
+            showStatus('config-status', 'Configuration saved successfully!', true);
+        });
+        
+        // Show status message
+        function showStatus(elementId, message, isSuccess) {
+            const statusElement = document.getElementById(elementId);
+            statusElement.textContent = message;
+            statusElement.className = `status-message ${isSuccess ? 'success' : 'error'}`;
+            statusElement.style.display = 'block';
+            
+            // Hide after 3 seconds
+            setTimeout(() => {
+                statusElement.style.display = 'none';
+            }, 3000);
+        }
+        
+        // Set up the chart
+        const ctx = document.createElement('canvas');
+        document.getElementById('chart').appendChild(ctx);
+        
+        const chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: timestamps,
+                datasets: [
+                    {
+                        label: 'Sensor 1',
+                        data: sensor1Data,
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        tension: 0.4
+                    },
+                    {
+                        label: 'Sensor 2',
+                        data: sensor2Data,
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        tension: 0.4
+                    },
+                    {
+                        label: 'Sensor 3',
+                        data: sensor3Data,
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        tension: 0.4
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: MAX_PRESSURE,
+                        title: {
+                            display: true,
+                            text: 'Pressure (kPa)'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Time'
+                        }
+                    }
+                },
+                animation: {
+                    duration: 500
+                }
+            }
+        });
+        
+        // Generate random pressure values with some correlation to previous values
+        function generatePressureData(previousValue = null) {
+            if (previousValue === null) {
+                return Math.random() * MAX_PRESSURE * 0.7;
+            }
+            
+            // Random walk with some constraints
+            const change = (Math.random() - 0.5) * 10;
+            let newValue = previousValue + change;
+            
+            // Keep within bounds
+            newValue = Math.max(0, Math.min(MAX_PRESSURE, newValue));
+            
+            // Add occasional spikes
+            if (Math.random() < 0.1) {
+                const spikeDirection = Math.random() < 0.5 ? 1 : -1;
+                newValue += spikeDirection * Math.random() * 15;
+                newValue = Math.max(0, Math.min(MAX_PRESSURE, newValue));
+            }
+            
+            return newValue;
+        }
+        
+        // Update gauge display
+        function updateGauge(sensorId, value) {
+            const percentage = (value / MAX_PRESSURE) * 100;
+            const degrees = (percentage / 100) * 180 - 90;
+            
+            document.getElementById(`gauge-fill-${sensorId}`).style.height = `${percentage}%`;
+            document.getElementById(`gauge-needle-${sensorId}`).style.transform = `rotate(${degrees}deg)`;
+            document.getElementById(`value-${sensorId}`).textContent = value.toFixed(1);
+        }
+        
+        // Send email alert
+        function sendAlert(sensor1, sensor2, sensor3, timestamp) {
+            // Check if we have a recipient email
+            if (!alertConfig.recipient) {
+                console.log('No recipient email configured for alerts');
+                return;
+            }
+            
+            // Check cooldown period
+            const now = Date.now();
+            if (now - alertConfig.lastAlertTime < alertConfig.cooldownPeriod) {
+                console.log('Alert cooldown period active');
+                return;
+            }
+            
+            // Prepare email parameters
+            const templateParams = {
+                to_email: alertConfig.recipient,
+                subject: 'High Pressure Alert!',
+                timestamp: timestamp,
+                sensor1: sensor1.toFixed(1),
+                sensor2: sensor2.toFixed(1),
+                sensor3: sensor3.toFixed(1),
+                status1: sensor1 > alertConfig.threshold ? 'ALERT' : 'Normal',
+                status2: sensor2 > alertConfig.threshold ? 'ALERT' : 'Normal',
+                status3: sensor3 > alertConfig.threshold ? 'ALERT' : 'Normal',
+                dashboardUrl: window.location.href,
+                message: `One or more sensors have exceeded the threshold of ${alertConfig.threshold} kPa. Please check the system immediately.`
+            };
+            
+            function showToast(message, type = "success") {
+  const toast = document.getElementById("toast");
+  toast.textContent = message;
+  toast.className = `toast show ${type}`;
+
+  setTimeout(() => {
+    toast.classList.remove("show");
+    setTimeout(() => toast.className = "toast hidden", 400);
+  }, 3000);
+}
+
+// Example EmailJS usage
+emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
+  .then(function() {
+      console.log('Alert email sent successfully!');
+      showToast("✅ Email sent successfully!", "success");
+      alertConfig.lastAlertTime = now;
+  }, function(error) {
+      console.error('Failed to send alert email:', error);
+      showToast("❌ Failed to send email!", "error");
+  });
+
+        }
+        
+        // Add log entry
+        function addLogEntry(timestamp, sensor1, sensor2, sensor3) {
+            const logElement = document.getElementById('data-log');
+            const entry = document.createElement('div');
+            entry.className = 'log-entry';
+            
+            // Check for high pressure alerts
+            const threshold = alertConfig.threshold;
+            let alertClass = '';
+            let alertText = '';
+            let shouldSendAlert = false;
+            
+            if (sensor1 > threshold || sensor2 > threshold || sensor3 > threshold) {
+                alertClass = 'alert';
+                alertText = ' - HIGH PRESSURE ALERT!';
+                shouldSendAlert = true;
+            }
+            
+            entry.className = `log-entry ${alertClass}`;
+            const logText = `${timestamp}: S1: ${sensor1.toFixed(1)} kPa, S2: ${sensor2.toFixed(1)} kPa, S3: ${sensor3.toFixed(1)} kPa${alertText}`;
+            entry.textContent = logText;
+            
+            logElement.insertBefore(entry, logElement.firstChild);
+            
+            // Add to full log for download
+            allLogEntries.push({
+                timestamp,
+                sensor1: sensor1.toFixed(1),
+                sensor2: sensor2.toFixed(1),
+                sensor3: sensor3.toFixed(1),
+                alert: shouldSendAlert ? 'YES' : 'NO'
+            });
+            
+            // Limit visible log entries
+            if (logElement.children.length > 50) {
+                logElement.removeChild(logElement.lastChild);
+            }
+            
+            // Send email alert if needed
+            if (shouldSendAlert) {
+                sendAlert(sensor1, sensor2, sensor3, timestamp);
+            }
+        }
+        
+        // Update data and UI
+        function updateData() {
+            // Generate new data
+            const newSensor1 = sensor1Data.length > 0 ? generatePressureData(sensor1Data[sensor1Data.length - 1]) : generatePressureData();
+            const newSensor2 = sensor2Data.length > 0 ? generatePressureData(sensor2Data[sensor2Data.length - 1]) : generatePressureData();
+            const newSensor3 = sensor3Data.length > 0 ? generatePressureData(sensor3Data[sensor3Data.length - 1]) : generatePressureData();
+            
+            // Update gauges
+            updateGauge(1, newSensor1);
+            updateGauge(2, newSensor2);
+            updateGauge(3, newSensor3);
+            
+            // Add timestamp
+            const now = new Date();
+            const timeString = moment(now).format('YYYY-MM-DD HH:mm:ss');
+            
+            // Add to history arrays
+            timestamps.push(timeString);
+            sensor1Data.push(newSensor1);
+            sensor2Data.push(newSensor2);
+            sensor3Data.push(newSensor3);
+            
+            // Limit history length
+            if (timestamps.length > HISTORY_POINTS) {
+                timestamps.shift();
+                sensor1Data.shift();
+                sensor2Data.shift();
+                sensor3Data.shift();
+            }
+            
+            // Update chart
+            chart.update();
+            
+            // Add log entry
+            addLogEntry(timeString, newSensor1, newSensor2, newSensor3);
+        }
+        
+        // Download log as CSV
+        document.getElementById('download-log').addEventListener('click', function() {
+            if (allLogEntries.length === 0) {
+                alert('No log data available for download');
+                return;
+            }
+            
+            // Create CSV content
+            let csvContent = 'data:text/csv;charset=utf-8,';
+            
+            // Add headers
+            csvContent += 'Timestamp,Sensor 1 (kPa),Sensor 2 (kPa),Sensor 3 (kPa),Alert Triggered\n';
+            
+            // Add data rows
+            allLogEntries.forEach(function(row) {
+                csvContent += `${row.timestamp},${row.sensor1},${row.sensor2},${row.sensor3},${row.alert}\n`;
+            });
+            
+            // Create download link
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement('a');
+            link.setAttribute('href', encodedUri);
+            link.setAttribute('download', `pressure_sensor_log_${moment().format('YYYYMMDD_HHmmss')}.csv`);
+            document.body.appendChild(link);
+            
+            // Trigger download
+            link.click();
+            
+            // Clean up
+            document.body.removeChild(link);
+        });
+        
+        // Load saved configuration on startup
+        loadConfig();
+        
+        // Initial update
+        updateData();
+        
+        // Set interval for updates
+        setInterval(updateData, UPDATE_INTERVAL);
+    </script>
+</body>
+</html>
+
+          
+        
+        </body>
+        </html>
+        
+    </section>
+
+   
+     
+  </main>
+
+  <footer>
+    &copy; 2025 Smart Campus Water System • All rights reserved
+  </footer>
+
+</body>
+</html>
